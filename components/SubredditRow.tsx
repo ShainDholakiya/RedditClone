@@ -5,7 +5,7 @@ import Avatar from './Avatar'
 
 type Props = {
   topic: String
-  index: Number
+  index: number
 }
 
 const SubredditRow = ({ index, topic }: Props) => {

@@ -52,8 +52,6 @@ const PostPage = () => {
     })
   })
 
-  console.log(data)
-
   return (
     <div className='mx-auto my-7 max-w-5xl'>
       <Post post={post} />
