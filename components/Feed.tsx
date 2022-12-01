@@ -10,7 +10,7 @@ type Props = {
 const Feed = ({ topic }: Props) => {
   const [data, setData] = useState<any>()
 
-  useEffect(() => {
+  const fetchData = () => {
     if (topic) {
       const { data } = useQuery(GET_ALL_POSTS_BY_TOPIC, {
         variables: { topic },
@@ -20,7 +20,8 @@ const Feed = ({ topic }: Props) => {
       const { data } = useQuery(GET_ALL_POSTS)
       setData(data)
     }
-  }, [])
+  }
+  fetchData()
   // const { data, error } = !topic
   //   ? useQuery(GET_ALL_POSTS)
   //   : useQuery(GET_ALL_POSTS_BY_TOPIC, {
