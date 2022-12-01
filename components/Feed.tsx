@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { GET_ALL_POSTS, GET_ALL_POSTS_BY_TOPIC } from '../graphql/queries'
 import Post from './Post'
 
@@ -8,11 +8,24 @@ type Props = {
 }
 
 const Feed = ({ topic }: Props) => {
-  const { data, error } = !topic
-    ? useQuery(GET_ALL_POSTS)
-    : useQuery(GET_ALL_POSTS_BY_TOPIC, {
+  const [data, setData] = useState<any>()
+
+  useEffect(() => {
+    if (topic) {
+      const { data } = useQuery(GET_ALL_POSTS_BY_TOPIC, {
         variables: { topic },
       })
+      setData(data)
+    } else {
+      const { data } = useQuery(GET_ALL_POSTS)
+      setData(data)
+    }
+  }, [])
+  // const { data, error } = !topic
+  //   ? useQuery(GET_ALL_POSTS)
+  //   : useQuery(GET_ALL_POSTS_BY_TOPIC, {
+  //       variables: { topic },
+  //     })
 
   const posts: Post[] = !topic ? data?.getPostList : data?.getPostListByTopic
 
