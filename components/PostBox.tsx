@@ -16,7 +16,11 @@ type FormData = {
   subreddit: string
 }
 
-const PostBox = () => {
+type Props = {
+  subreddit?: string
+}
+
+const PostBox = ({ subreddit }: Props) => {
   const { data: session } = useSession()
   const [addPost] = useMutation(ADD_POST, {
     refetchQueries: [GET_ALL_POSTS, 'getPostList'],
@@ -39,7 +43,7 @@ const PostBox = () => {
     try {
       const { data: getSubredditListByTopic } = await client.query({
         query: GET_SUBREDDIT_BY_TOPIC,
-        variables: { topic: formData.subreddit },
+        variables: { topic: subreddit || formData.subreddit },
       })
 
       const subredditExists =
@@ -123,7 +127,11 @@ const PostBox = () => {
           className='flex-1 rounded-md bg-gray-50 p-2 pl-5 outline-none'
           type='text'
           placeholder={
-            session ? 'Create a post by entering a title!' : 'Sign in to post'
+            session
+              ? subreddit
+                ? `Create a post in r/${subreddit}`
+                : 'Create a post by entering a title!'
+              : 'Sign in to post'
           }
         />
 
@@ -153,16 +161,18 @@ const PostBox = () => {
             />
           </div>
 
-          <div className='flex items-center px-2'>
-            <p className='min-w-[90px]'>Subreddit:</p>
-            <input
-              {...register('subreddit', { required: true })}
-              disabled={!session}
-              className='m-2 flex-1 rounded-md bg-gray-50 p-2 outline-none'
-              type='text'
-              placeholder='i.e. r/shaincodes'
-            />
-          </div>
+          {!subreddit && (
+            <div className='flex items-center px-2'>
+              <p className='min-w-[90px]'>Subreddit:</p>
+              <input
+                {...register('subreddit', { required: true })}
+                disabled={!session}
+                className='m-2 flex-1 rounded-md bg-gray-50 p-2 outline-none'
+                type='text'
+                placeholder='i.e. r/shaincodes'
+              />
+            </div>
+          )}
 
           {imageBoxOpen && (
             <div className='flex items-center px-2'>
