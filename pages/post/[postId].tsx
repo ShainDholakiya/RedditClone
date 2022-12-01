@@ -81,7 +81,7 @@ const PostPage = () => {
       </div>
       <div className='-my-5 rounded-b-md border border-t-0 border-gray-300 bg-white py-5 px-10'>
         <hr className='py-2' />
-        {post?.comment.map((comment) => (
+        {post?.comment.map((comment: any) => (
           <div
             key={comment.id}
             className='relative flex items-center space-y-5 space-x-2'
