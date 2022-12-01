@@ -1,3 +1,23 @@
+https://reddit-clone-shain.vercel.app/
+
+## Tech Stack
+
+- [React](https://reactjs.org/)
+- [Next.js](https://nextjs.org/)
+- [GraphQL](https://graphql.org/)
+- [Supabase](https://supabase.com/)
+- [StepZen](https://stepzen.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+
+## Other Packages/Libraries Used
+
+- [NextAuth.js](https://next-auth.js.org/)
+- [Apollo Client](https://github.com/apollographql/apollo-client)
+- [React Hook Form](https://react-hook-form.com/)
+- [React Hot Toast](https://react-hot-toast.com/)
+- [React Time Ago](https://github.com/nmn/react-timeago)
+- [Loaders](https://uiball.com/loaders/)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
