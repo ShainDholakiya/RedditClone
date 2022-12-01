@@ -19,7 +19,7 @@ const Avatar = ({ seed, large }: Props) => {
       <Image
         alt='avatar'
         src={`https://avatars.dicebear.com/api/human/${
-          seed || session?.user.name || 'placeholder'
+          seed || session?.user?.name || 'placeholder'
         }.svg`}
         layout='fill'
       />

@@ -9,18 +9,9 @@ type Props = {
 
 const Feed = ({ topic }: Props) => {
   const query = topic ? GET_ALL_POSTS_BY_TOPIC : GET_ALL_POSTS
-  // const { data } = useQuery(!topic ? GET_ALL_POSTS_BY_TOPIC, {
-  //   variables: { topic },
-  // })
   const { data } = useQuery(query, {
     variables: topic ? { topic } : {},
   })
-
-  // const { data, error } = !topic
-  //   ? useQuery(GET_ALL_POSTS)
-  //   : useQuery(GET_ALL_POSTS_BY_TOPIC, {
-  //       variables: { topic },
-  //     })
 
   const posts: Post[] = !topic ? data?.getPostList : data?.getPostListByTopic
 
